@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.STL binary
+*.usd binary
+*.pt binary
+*.onnx binary
+*.npz binary

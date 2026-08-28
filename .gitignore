@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+build/
+dist/
+*.log
+
+# Superseded intermediate export; sanitized v4 is published under
+# models/sprite0825/isaaclab.
+models/sprite0825/urdf/urdf/sprite0825_sanitized_v1.*

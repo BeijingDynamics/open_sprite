@@ -1,0 +1,8 @@
+<mujoco model="sprite0825_external_pd_scene">
+  <include file="sprite0825_external_pd.xml"/>
+  <statistic center="0 0 0.5" extent="1.2"/>
+  <worldbody>
+    <light pos="0 0 3" dir="0 0 -1" directional="true"/>
+    <geom name="floor" type="plane" size="0 0 0.05" rgba="0.25 0.3 0.35 1" friction="0.8 0.02 0.001"/>
+  </worldbody>
+</mujoco>

@@ -1,5 +1,10 @@
 # Locomotion milestones
 
+This page preserves the original v4-era milestone record. For the default
+public v5 asset and the distinction between robot assets and policy packages,
+see [asset_versions.md](asset_versions.md). Current training/runtime progress
+is maintained in the linked RL and runtime repositories.
+
 ## V38 Stage 1 whole-body tracking
 
 V38 is the first frozen Sprite whole-body-tracking milestone that completed
@@ -23,8 +28,8 @@ releases can be matched to the frozen artifact without ambiguity.
 
 ## Stage 2 command locomotion
 
-Stage 2 is in active development on the Sprite0825 sanitized v4 asset. Its
-target is one command-conditioned policy supporting stable stand, natural
+At the time of the original v4 release, Stage 2 was in development on the
+Sprite0825 sanitized v4 asset. Its target was one command-conditioned policy supporting stable stand, natural
 start/stop, continuous forward speed, and left/right turning in both Isaac Lab
 and MuJoCo. Experimental checkpoints are deliberately not published as
 hardware-ready policies.

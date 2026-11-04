@@ -1,0 +1,314 @@
+{
+  "schema": "open_sprite_public_robot_asset_v1",
+  "asset_revision": "sprite0825_sanitized_v5_4340_shoulders",
+  "source_repository": "https://github.com/BeijingDynamics/open_sprite_rl",
+  "source_commit": "07a513188de64572e891ab21cacb6c79e083b044",
+  "source_candidate_path": "candidates/sprite0825_stage2_g74_model5999_4340_shoulders",
+  "hardware_revision": {
+    "changed_joints": [
+      "left_shoulder_pitch_joint",
+      "left_shoulder_roll_joint",
+      "right_shoulder_pitch_joint",
+      "right_shoulder_roll_joint"
+    ],
+    "motor": "DM-J4340P-2EC",
+    "rated_effort_nm": 14.0,
+    "peak_effort_nm": 40.0,
+    "velocity_limit_rad_s": 9.3,
+    "unchanged_distal_motor": "DM-J4310P-2EC"
+  },
+  "urdf": "sprite0825_float.urdf",
+  "urdf_sha256": "6c753d563b54103e4278c27a11a22e0f4f1076e4156f0873cb2325f1701a921b",
+  "mesh_count": 33,
+  "revolute_joint_count": 31,
+  "source_files": {
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/sprite0825_float.urdf": {
+      "git_blob": "12adb74f700a1ded5411d9645fb8b33c509a3e63",
+      "sha256": "6c753d563b54103e4278c27a11a22e0f4f1076e4156f0873cb2325f1701a921b"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/base_link.STL": {
+      "git_blob": "61e233fe6863fbf85578ad36e3c455ad0cef8fc1",
+      "sha256": "017697ad10f7f46571993c72ba968d988d1151eb33b1daf67a76527d9ccf0a33"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/head_pitch_link.STL": {
+      "git_blob": "c53fc7a892c99c0e6637c8eccff768da1ef34986",
+      "sha256": "26d21d6c39e9d1bce9b5f0ef1222cbdc96626e488e36e5dcacbe876e213538a6"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/head_roll_link.STL": {
+      "git_blob": "d587c90354ffb12486217e916ac9b4a16a05c25d",
+      "sha256": "86d2588b949233085fb3bc8b1c4f047d1151eda7ff5d143b6ec2ac890eb85788"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/head_yaw_link.STL": {
+      "git_blob": "027c9c247011fd81556081ea75528c822e4edcd0",
+      "sha256": "c8ecb5a3422784784fcefbbe53795678176cad8b15550a2af3ebb903fc6b3aac"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_ankle_pitch_link.STL": {
+      "git_blob": "3690b4192c245095e2f9b9aa434366a65e57801f",
+      "sha256": "6d19f3bf08006581a64e47e52059f560c3f3840bec93c91d56e1f3dfab0f4862"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_ankle_roll_link.STL": {
+      "git_blob": "3771254bba2b8b0b643a33aa87546a36893d3469",
+      "sha256": "85db914d6fd20f43479c655d5c98acfc17c907a8ec9cf6563f18df8310784a64"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_elbow_link.STL": {
+      "git_blob": "a74452da4a04f345b1595f178fb56d16917554c9",
+      "sha256": "746f60944dd115571b2d9b422d3644b621e28c709365eebd08c7950aa57adbd0"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_hip_pitch_link.STL": {
+      "git_blob": "9ec06ac654049523ed88a2914e8488eaa5334392",
+      "sha256": "957f6e71bbdc70bacf8a1c6760a43921a05ac2dd2f2a0e01489935fa480b2e15"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_hip_roll_link.STL": {
+      "git_blob": "486a3f8e8c125aa9352943d4f4d2133c20f3f575",
+      "sha256": "847034adac5038db18690a300786c7268ddfcfecb70cda20efe41a703e2a8201"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_hip_yaw_link.STL": {
+      "git_blob": "312cc01dd6aff18e94f24e41843538ac1f1e9f2b",
+      "sha256": "d87ed1037141566084ac265e647f983ff8cadae7238ddc2cb9a75c213d944db5"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_knee_link.STL": {
+      "git_blob": "e67146afb6c22e880b404589167f30b22194b17d",
+      "sha256": "4dc73ec36f660bf53bff9e4b381f7abfdf0276b2820ff0801e7440316128b168"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_shoulder_pitch_link.STL": {
+      "git_blob": "cdd3c35bdb834c7d023df169f9150a451ba0e83b",
+      "sha256": "130fb69af9b2474629aec3fa287dfed9834eadd19281684991a65822eefadc15"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_shoulder_roll_link.STL": {
+      "git_blob": "e0c4ac83760ca41ada13da795ac2433af5e56e50",
+      "sha256": "4c1eb6d421310e3597f862c475a68fabd9449d1ba73cf5631afa4f7fa8221161"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_shoulder_yaw_link.STL": {
+      "git_blob": "f5291cc0d6e086f5d8afc452856795d4538cc33f",
+      "sha256": "3a50c9742fc548a8388f8d60b51a953d712e5a851cdfbb90769ec3ca1c508aed"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_wrist_pitch_link.STL": {
+      "git_blob": "a359d901cec3e720817d305572e42f18cc87c447",
+      "sha256": "a405dd2b4846d070ffb87921f5637e157ec480c870b0eec7bca6485d1218bd74"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_wrist_roll_link.STL": {
+      "git_blob": "0e18289eccdcb0e5c2d620be679d7a2c997c4da5",
+      "sha256": "1821b1ebdf0ffa780be85831a8a94f4ab18f6e34715e31b6d84c10c50e3d3a07"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/left_wrist_yaw_link.STL": {
+      "git_blob": "73c13f3c78339a281c5d32a52fb65abe5d6e9374",
+      "sha256": "4be8ce0cec509ba49abf368d23f8a4545c7a5dffbe7f680fcb2a73f9b2ca4377"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/pelvis_link.STL": {
+      "git_blob": "d818a89b5e994d4ebafc43266e23d87c4aac1f0c",
+      "sha256": "67dd0cbd25ea68b28cbd37762d84788a66df49723f4f787d4dee2e3c92da9279"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_ankle_pitch_link.STL": {
+      "git_blob": "0090a6b5d9863c52bbf85febe7d1e7ec12609587",
+      "sha256": "365277e1d3ae36b198dd9ec2ff12a48158f7db2bd1e0712fe9ad3cafa49212e1"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_ankle_roll_link.STL": {
+      "git_blob": "3771254bba2b8b0b643a33aa87546a36893d3469",
+      "sha256": "85db914d6fd20f43479c655d5c98acfc17c907a8ec9cf6563f18df8310784a64"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_elbow_link.STL": {
+      "git_blob": "a3ef5c9033b923d7eec7a85292476d8a2e147758",
+      "sha256": "b4b1dc9278ab983f0775a12354b213eefff2ecfde103d86e520f9ecb2dae2684"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_hip_pitch_link.STL": {
+      "git_blob": "808c063bcbad8421db1c94d7811993008b96d35b",
+      "sha256": "bdce921fe0c0908085fc2eccd55c40408084580ab092ef8bfafc9cc72e108096"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_hip_roll_link.STL": {
+      "git_blob": "12694e01c79a9e49b15b92b68d32b7f77272b457",
+      "sha256": "34e1b347b011dacd538077c9f4b52e08c4ebe5a23030150b65c1e27b64d3d2f7"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_hip_yaw_link.STL": {
+      "git_blob": "5f60169322652c3f05f0fd107a8cfa0d31c76b3b",
+      "sha256": "ffe0dbd41696763e3220deb0ebf879a0818a684f9027957d7c4e834a0dd7546e"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_knee_link.STL": {
+      "git_blob": "1c83c50a9c1043e19f8cd202e0fdc8cb50fab6c4",
+      "sha256": "3ca4f4136c8572fa2cbb10be08f8e9ffee23df317cc21ccf3b65e9af825511bf"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_shoulder_pitch_link.STL": {
+      "git_blob": "5c5a863192615c44fd015deda010c6ed550d32d0",
+      "sha256": "064e0b83c06bb95cb13fb721f974e1ba720c0a2e4f2de312b776359cdaef8f7b"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_shoulder_roll_link.STL": {
+      "git_blob": "e0c4ac83760ca41ada13da795ac2433af5e56e50",
+      "sha256": "4c1eb6d421310e3597f862c475a68fabd9449d1ba73cf5631afa4f7fa8221161"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_shoulder_yaw_link.STL": {
+      "git_blob": "ed5ee35e9b5fe17f0f777ade60dafa881954f387",
+      "sha256": "4b9c83b1c2746c4ee0e8a1b46389f6ad3456c09b77a8910c3397490a6abf2777"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_wrist_pitch_link.STL": {
+      "git_blob": "b4a98f0005859c8162a7f22cc650d21522c24eea",
+      "sha256": "18d8a83cfba5822cee476ebadc03afe6d6abb10405a03812eb906128ced7dff3"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_wrist_roll_link.STL": {
+      "git_blob": "6a89adcfd40800f4da5a84dd6dc5344af433636b",
+      "sha256": "32fc10289139e7fb3d5370a9da04797f75a0f3d4c42d7cf9cd7253ca183234b9"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/right_wrist_yaw_link.STL": {
+      "git_blob": "67e271de96b8a2a68e9a8d85fed150e866bc3d70",
+      "sha256": "5a101c9ef8290d4d0e509a9bf404792fe640a3a9a054532a406a031bda0d56ac"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/waist_roll_link.STL": {
+      "git_blob": "8103d605a90b2b5ed194344cf612ea273389b774",
+      "sha256": "6a08317ee49b01b4116b759e57d1ae7bccc9b3f89a4146e6d655212879160e17"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/meshes/waist_yaw_link.STL": {
+      "git_blob": "5923e70b86d961c04b7f53834a78a6bd7666c733",
+      "sha256": "1b4e5f932dd78b3724687c4dc38627d72efc18a4c459d6ca9db6f9f5eacd3194"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/base_link.STL": {
+      "git_blob": "61e233fe6863fbf85578ad36e3c455ad0cef8fc1",
+      "sha256": "017697ad10f7f46571993c72ba968d988d1151eb33b1daf67a76527d9ccf0a33"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/head_pitch_link.STL": {
+      "git_blob": "c53fc7a892c99c0e6637c8eccff768da1ef34986",
+      "sha256": "26d21d6c39e9d1bce9b5f0ef1222cbdc96626e488e36e5dcacbe876e213538a6"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/head_roll_link.STL": {
+      "git_blob": "d587c90354ffb12486217e916ac9b4a16a05c25d",
+      "sha256": "86d2588b949233085fb3bc8b1c4f047d1151eda7ff5d143b6ec2ac890eb85788"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/head_yaw_link.STL": {
+      "git_blob": "027c9c247011fd81556081ea75528c822e4edcd0",
+      "sha256": "c8ecb5a3422784784fcefbbe53795678176cad8b15550a2af3ebb903fc6b3aac"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_ankle_pitch_link.STL": {
+      "git_blob": "3690b4192c245095e2f9b9aa434366a65e57801f",
+      "sha256": "6d19f3bf08006581a64e47e52059f560c3f3840bec93c91d56e1f3dfab0f4862"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_ankle_roll_link.STL": {
+      "git_blob": "3771254bba2b8b0b643a33aa87546a36893d3469",
+      "sha256": "85db914d6fd20f43479c655d5c98acfc17c907a8ec9cf6563f18df8310784a64"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_elbow_link.STL": {
+      "git_blob": "a74452da4a04f345b1595f178fb56d16917554c9",
+      "sha256": "746f60944dd115571b2d9b422d3644b621e28c709365eebd08c7950aa57adbd0"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_hip_pitch_link.STL": {
+      "git_blob": "9ec06ac654049523ed88a2914e8488eaa5334392",
+      "sha256": "957f6e71bbdc70bacf8a1c6760a43921a05ac2dd2f2a0e01489935fa480b2e15"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_hip_roll_link.STL": {
+      "git_blob": "486a3f8e8c125aa9352943d4f4d2133c20f3f575",
+      "sha256": "847034adac5038db18690a300786c7268ddfcfecb70cda20efe41a703e2a8201"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_hip_yaw_link.STL": {
+      "git_blob": "312cc01dd6aff18e94f24e41843538ac1f1e9f2b",
+      "sha256": "d87ed1037141566084ac265e647f983ff8cadae7238ddc2cb9a75c213d944db5"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_knee_link.STL": {
+      "git_blob": "e67146afb6c22e880b404589167f30b22194b17d",
+      "sha256": "4dc73ec36f660bf53bff9e4b381f7abfdf0276b2820ff0801e7440316128b168"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_shoulder_pitch_link.STL": {
+      "git_blob": "cdd3c35bdb834c7d023df169f9150a451ba0e83b",
+      "sha256": "130fb69af9b2474629aec3fa287dfed9834eadd19281684991a65822eefadc15"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_shoulder_roll_link.STL": {
+      "git_blob": "e0c4ac83760ca41ada13da795ac2433af5e56e50",
+      "sha256": "4c1eb6d421310e3597f862c475a68fabd9449d1ba73cf5631afa4f7fa8221161"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_shoulder_yaw_link.STL": {
+      "git_blob": "f5291cc0d6e086f5d8afc452856795d4538cc33f",
+      "sha256": "3a50c9742fc548a8388f8d60b51a953d712e5a851cdfbb90769ec3ca1c508aed"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_wrist_pitch_link.STL": {
+      "git_blob": "a359d901cec3e720817d305572e42f18cc87c447",
+      "sha256": "a405dd2b4846d070ffb87921f5637e157ec480c870b0eec7bca6485d1218bd74"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_wrist_roll_link.STL": {
+      "git_blob": "0e18289eccdcb0e5c2d620be679d7a2c997c4da5",
+      "sha256": "1821b1ebdf0ffa780be85831a8a94f4ab18f6e34715e31b6d84c10c50e3d3a07"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/left_wrist_yaw_link.STL": {
+      "git_blob": "73c13f3c78339a281c5d32a52fb65abe5d6e9374",
+      "sha256": "4be8ce0cec509ba49abf368d23f8a4545c7a5dffbe7f680fcb2a73f9b2ca4377"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/pelvis_link.STL": {
+      "git_blob": "d818a89b5e994d4ebafc43266e23d87c4aac1f0c",
+      "sha256": "67dd0cbd25ea68b28cbd37762d84788a66df49723f4f787d4dee2e3c92da9279"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_ankle_pitch_link.STL": {
+      "git_blob": "0090a6b5d9863c52bbf85febe7d1e7ec12609587",
+      "sha256": "365277e1d3ae36b198dd9ec2ff12a48158f7db2bd1e0712fe9ad3cafa49212e1"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_ankle_roll_link.STL": {
+      "git_blob": "3771254bba2b8b0b643a33aa87546a36893d3469",
+      "sha256": "85db914d6fd20f43479c655d5c98acfc17c907a8ec9cf6563f18df8310784a64"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_elbow_link.STL": {
+      "git_blob": "a3ef5c9033b923d7eec7a85292476d8a2e147758",
+      "sha256": "b4b1dc9278ab983f0775a12354b213eefff2ecfde103d86e520f9ecb2dae2684"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_hip_pitch_link.STL": {
+      "git_blob": "808c063bcbad8421db1c94d7811993008b96d35b",
+      "sha256": "bdce921fe0c0908085fc2eccd55c40408084580ab092ef8bfafc9cc72e108096"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_hip_roll_link.STL": {
+      "git_blob": "12694e01c79a9e49b15b92b68d32b7f77272b457",
+      "sha256": "34e1b347b011dacd538077c9f4b52e08c4ebe5a23030150b65c1e27b64d3d2f7"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_hip_yaw_link.STL": {
+      "git_blob": "5f60169322652c3f05f0fd107a8cfa0d31c76b3b",
+      "sha256": "ffe0dbd41696763e3220deb0ebf879a0818a684f9027957d7c4e834a0dd7546e"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_knee_link.STL": {
+      "git_blob": "1c83c50a9c1043e19f8cd202e0fdc8cb50fab6c4",
+      "sha256": "3ca4f4136c8572fa2cbb10be08f8e9ffee23df317cc21ccf3b65e9af825511bf"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_shoulder_pitch_link.STL": {
+      "git_blob": "5c5a863192615c44fd015deda010c6ed550d32d0",
+      "sha256": "064e0b83c06bb95cb13fb721f974e1ba720c0a2e4f2de312b776359cdaef8f7b"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_shoulder_roll_link.STL": {
+      "git_blob": "e0c4ac83760ca41ada13da795ac2433af5e56e50",
+      "sha256": "4c1eb6d421310e3597f862c475a68fabd9449d1ba73cf5631afa4f7fa8221161"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_shoulder_yaw_link.STL": {
+      "git_blob": "ed5ee35e9b5fe17f0f777ade60dafa881954f387",
+      "sha256": "4b9c83b1c2746c4ee0e8a1b46389f6ad3456c09b77a8910c3397490a6abf2777"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_wrist_pitch_link.STL": {
+      "git_blob": "b4a98f0005859c8162a7f22cc650d21522c24eea",
+      "sha256": "18d8a83cfba5822cee476ebadc03afe6d6abb10405a03812eb906128ced7dff3"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_wrist_roll_link.STL": {
+      "git_blob": "6a89adcfd40800f4da5a84dd6dc5344af433636b",
+      "sha256": "32fc10289139e7fb3d5370a9da04797f75a0f3d4c42d7cf9cd7253ca183234b9"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/right_wrist_yaw_link.STL": {
+      "git_blob": "67e271de96b8a2a68e9a8d85fed150e866bc3d70",
+      "sha256": "5a101c9ef8290d4d0e509a9bf404792fe640a3a9a054532a406a031bda0d56ac"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/waist_roll_link.STL": {
+      "git_blob": "8103d605a90b2b5ed194344cf612ea273389b774",
+      "sha256": "6a08317ee49b01b4116b759e57d1ae7bccc9b3f89a4146e6d655212879160e17"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/meshes/waist_yaw_link.STL": {
+      "git_blob": "5923e70b86d961c04b7f53834a78a6bd7666c733",
+      "sha256": "1b4e5f932dd78b3724687c4dc38627d72efc18a4c459d6ca9db6f9f5eacd3194"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/sprite0825_v5_external_pd.xml": {
+      "git_blob": "90365418773f23d82d54a8d6fca4d558eb1d7431",
+      "sha256": "641b8199e9e24c059b1b0352e57e29128b44229a03832267eac3407beb174721"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/mujoco/sprite0825_v5_4340_shoulders/scene_external_pd.xml": {
+      "git_blob": "6eb0febb99d5f67d0679d5ed3d3d33477187fb45",
+      "sha256": "b4f6dd161f6af1d4fadb44da155d1ff3c319341b541aab99fc4c176c22a40d9d"
+    },
+    "candidates/sprite0825_stage2_g74_model5999_4340_shoulders/assets/isaac/sprite0825_sanitized_v5_4340_shoulders/manifest.json": {
+      "git_blob": "2b61421c4fb9dd7708329d3993edf3fdcee93d72",
+      "sha256": "e816a8d9de9743c5d0ec13cb845e573f6541a834dedea4d2f038420d7325878e"
+    }
+  },
+  "packaging_changes": [
+    "URDF and STL bytes unchanged from pinned public source.",
+    "MuJoCo compiler meshdir='../' shares the URDF mesh directory; physics values unchanged.",
+    "External scene model label corrected from inherited v4 label; framing statistic added.",
+    "Geometry-only scene derived by removing all 32 joints from external model at q=0.",
+    "Isaac USD and policy/deployment artifacts are not included in this asset-only package."
+  ],
+  "policy_compatibility": "Asset provenance only: G74 model5999 is not the external runtime model3000 deployment bundle."
+}

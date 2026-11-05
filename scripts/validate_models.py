@@ -14,6 +14,7 @@ import mujoco
 import numpy as np
 
 from build_waist_inertia_revision import REVISION_NAME, WAIST_COM, WAIST_INERTIA, WAIST_MASS_KG
+from control_profile import load_control_profile
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -183,6 +184,8 @@ def main() -> None:
     validate_v5_contract(LATEST_V5 / "sprite0825_float.urdf", LATEST_V5 / "mujoco/sprite0825_v5_external_pd.xml")
     validate_waist_revision()
     validate_hashes()
+    profile = load_control_profile()
+    print(f"OK control profile {profile.data['profile_id']} joints={len(profile.joints)} source/model hashes verified")
 
 
 if __name__ == "__main__":

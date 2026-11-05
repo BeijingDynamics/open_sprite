@@ -28,8 +28,10 @@ checks the full tensor instead of comparing principal moments to Ixx/Iyy/Izz.
 All other link inertials, joint origins/axes/ranges, effort/velocity metadata,
 armature, collision settings and mesh bytes are unchanged from historical v5.
 In particular this does not replace the public shoulder armature or collision
-shapes with experiment-specific values. No PD gains are supplied by this asset
-revision, and no existing trained policy is automatically qualified for it.
+shapes with experiment-specific values. PD gains are not embedded in these
+robot-description files. The separate [training control profile](training_control_profile.md)
+now supplies a versioned current-training snapshot bound to this asset; no
+existing trained policy is automatically qualified for it.
 
 The new directory includes its own complete mesh set. Its manifest records
 the historical base, the owner-provided parameters and per-file hashes.

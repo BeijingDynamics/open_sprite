@@ -17,6 +17,7 @@ This repository contains:
 - a stable one-command MuJoCo visual model;
 - the floating-base external-PD MuJoCo model used for controller development;
 - versioned source provenance and SHA-256 checksums;
+- a named-joint control profile exported from current serial training, with a strict loader;
 - the original v4 and historical v5 models, retained unchanged for reproducibility.
 
 The historical v5 assets were extracted from the public G74 `model5999` candidate in
@@ -72,6 +73,27 @@ shoulders, URDF/MJCF axes and position limits, and the latest waist mass,
 COM and full inertia tensor in both the URDF and compiled MuJoCo models.
 No robot connection is needed.
 
+## Training controls
+
+The current training Kp/Kd, torque caps, default joint positions, velocity-cost
+thresholds, action scale and timing are published separately from the URDF:
+
+- [`control_profiles/sprite0825_serial_training_20261105.json`](control_profiles/sprite0825_serial_training_20261105.json)
+- [`docs/training_control_profile.md`](docs/training_control_profile.md), including named-joint loading and `supermimic_run` integration
+
+```bash
+python scripts/control_profile.py
+```
+
+The profile binds the latest waist-inertia model by SHA256, rejects unknown or
+missing joint names, and preserves the exact current training values. It is a
+**training snapshot, not hardware-qualified gains or a walking-policy release**.
+This training uses50Hz policy updates and200Hz simulation PD; the separate
+runtime's500Hz ankle controller is not changed. Loading a JSON does not
+implement timing or reconcile inherited actuator limits; follow the integration
+notes before starting a new experiment. Full-model differences between the
+public asset and the source training model are explicit in the profile.
+
 ## Which model should I use?
 
 | Purpose | Entry point |
@@ -97,7 +119,7 @@ to the runtime, not to this model's joint tree. Head yaw is independent.
 
 | Repository | Responsibility |
 | --- | --- |
-| [open_sprite](https://github.com/BeijingDynamics/open_sprite) (this repository) | Versioned URDF, meshes, MuJoCo scenes and validation |
+| [open_sprite](https://github.com/BeijingDynamics/open_sprite) (this repository) | Versioned URDF, meshes, MuJoCo scenes, named training controls and validation |
 | [open_sprite_rl](https://github.com/BeijingDynamics/open_sprite_rl) | Training code and explicitly identified policy candidates |
 | [open_sprite_runtime](https://github.com/BeijingDynamics/open_sprite_runtime) | Hardware runtime, motor mapping, parallel-joint conversion, IMU and deployment entry points |
 
@@ -124,8 +146,8 @@ the archived v4 milestone page is not a claim about current training assets.
 
 ## Safety
 
-These files are research artifacts. They are not a complete robot controller
-and do not provide current limits, CAN communication, state estimation,
+These files and the training control snapshot are research artifacts. They are
+not a complete robot controller and do not provide hardware current limits, CAN communication, state estimation,
 emergency stopping, or hardware interlocks. Verify joint directions, zero
 positions, limits, inertias, coupled-ankle mapping, PD gains, motor ratings and
 torque-speed envelopes against the physical robot before applying power.

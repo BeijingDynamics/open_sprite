@@ -1,0 +1,578 @@
+{
+  "schema": "open_sprite_training_control_profile_v1",
+  "profile_id": "sprite0825_serial_training_20261105",
+  "status": "frozen_training_snapshot_not_hardware_qualified",
+  "hardware_qualified": false,
+  "model_binding": {
+    "asset_revision": "sprite0825_v5_4340_shoulders_waist20261105",
+    "asset_publication_commit": "f42a266c860db70d73ce92f34e26d253a2659636",
+    "asset_directory": "models/sprite0825_v5_4340_shoulders_waist20261105",
+    "files_sha256": {
+      "models/sprite0825_v5_4340_shoulders_waist20261105/manifest.json": "5ea99a2d27bcf89b0681033bfa968830fce55081dcaf133726c4b4a1ece53f78",
+      "models/sprite0825_v5_4340_shoulders_waist20261105/sprite0825_float.urdf": "f873954bf60d9ff2bb4e49d3ec68ba2bf8cf0bdfb1144aaa1103f6a302663bd9",
+      "models/sprite0825_v5_4340_shoulders_waist20261105/mujoco/sprite0825_v5_external_pd.xml": "5859ea2088ebf90ac62c7094343200a9a6e14078ed47bdf65d5a39ee9522ba93",
+      "models/sprite0825_v5_4340_shoulders_waist20261105/mujoco/sprite0825_v5_visual_locked.xml": "91b24d1f521ea737cec71f1c94f501e76b544e4041e48591bbf665ee16243525"
+    },
+    "same_complete_model_as_source_training": false,
+    "scope": "Controls are bound for reuse with the public waist-inertia revision; the source training model has different shoulder armature/collision primitives and full-precision inertials."
+  },
+  "provenance": {
+    "source_contract_sha256": "b61ad2fd0230cef9be635dc7db3293bada691ea155b04c7db223b0cfa7c9cfea",
+    "source_pd_table_sha256": "f12823189ebca4b4bf0670e3f7999a5e97d03dccf4c3b8d6a1451cca978e1cb9",
+    "source_joint_contract_sha256": "654335f645e29e840282d3d719a1b0a650699586325c043cec1eafed206d70ec",
+    "source_adapter_sha256": "425c246b600c51066cad44c16bd9ff8200d79d839bfecf5090b191c47004a96a",
+    "source_upstream_commit": "4beb018567574215b5c9f95e0cc13cf5e04012d3",
+    "source_training_model_sha256": "a6f5ffb2b00d821b0c5f9cbcc79ae34cd045d9d720e8c4f6dcac7ba7db0d9226",
+    "source_joint_fields": [
+      "kp",
+      "kd",
+      "effort_nm",
+      "velocity_rad_s",
+      "default_pos_rad",
+      "archived_command_min_rad",
+      "archived_command_max_rad"
+    ],
+    "source_joint_values_sha256": "f635d4bb9a1300bfe9dfa6fd3f6355928156d9196e6e0133643f2f8cc2257566",
+    "canonicalization": "JSON sort_keys=True,separators=(comma,colon),UTF-8,finite numbers",
+    "verification": "Compared read-only against the running joint-training source snapshot on 2026-11-05; all 31 joint records match."
+  },
+  "units": {
+    "kp": "N*m/rad",
+    "kd": "N*m*s/rad",
+    "effort_nm": "N*m",
+    "velocity_rad_s": "rad/s",
+    "default_pos_rad": "rad",
+    "position_limits": "rad"
+  },
+  "controller": {
+    "space": "serial_joint",
+    "law": "tau_raw=kp*(q_target-q)+kd*(qd_target-qd)+tau_ff",
+    "torque_clamp": "tau=clip(tau_raw,-effort_nm,+effort_nm) per joint at each physics step",
+    "velocity_target_rad_s": 0.0,
+    "feedforward_torque_nm": 0.0,
+    "gain_randomization_enabled": false,
+    "effort_randomization_enabled": false,
+    "torque_lag_enabled": false,
+    "torque_time_constant_s": [
+      0.0,
+      0.0
+    ],
+    "motor_mapping": false,
+    "mit_quantization": false,
+    "runtime_watchdogs": false,
+    "parallel_linkage_conversion": false
+  },
+  "action": {
+    "type": "joint_position_offset",
+    "raw_clip": [
+      -20.0,
+      20.0
+    ],
+    "scale_rad": 0.25,
+    "target_equation": "q_target=default_pos_rad+scale_rad*clip(raw_action,-20,+20)",
+    "clip_location": "Actor/collection output, not an additional joint-position projection",
+    "joint_target_projection_enabled": false,
+    "default_pose_role": "Action offset, not URDF geometric zero and not an instruction to reset live joints"
+  },
+  "timing": {
+    "policy_hz": 50,
+    "policy_dt_s": 0.02,
+    "simulation_pd_hz": 200,
+    "physics_dt_s": 0.005,
+    "decimation": 4,
+    "command_delay": {
+      "enabled": true,
+      "min_physics_ticks": 0,
+      "max_physics_ticks": 1,
+      "min_delay_s": 0.0,
+      "max_delay_s": 0.005,
+      "hold_probability": 0.9,
+      "refresh_physics_ticks": 4,
+      "refresh_period_s": 0.02,
+      "semantics": "Original tracker/mjlab stochastic command buffer; no replacement delay implementation supplied"
+    },
+    "runtime_note": "Independent of this simulation profile: verified runtime ankle torque control is500Hz, other motor targets50Hz; this export does not change runtime."
+  },
+  "limits": {
+    "mechanical_position": "From bound public URDF; enforced by physical joint constraints, not target projection",
+    "velocity_rad_s_role": "Current training velocity-cost threshold, not a hard velocity clamp or protocol VMAX",
+    "effort_nm_role": "Actual serial-joint simulation PD clip; not MIT TMAX, motor peak or URDF effort metadata",
+    "archived_command_bounds_role": "Provenance only; NOT applied as target clipping in the current serial training",
+    "urdf_metadata_role": "Preserved asset metadata; adapters must explicitly apply profile limits rather than silently inheriting these values"
+  },
+  "warnings": [
+    "This is the exact current training control snapshot, not a tuned walking result or a safe hardware deployment configuration.",
+    "Historical values are intentionally retained: waist yaw5Nm, wrist yaw1.5625Nm, wrist pitch/roll0.03Nm and head0.15Nm. They are not claimed as hardware ratings.",
+    "Training ankle pitch/roll PD acts in serial joint coordinates. Do not send these gains directly to the physical parallel motors.",
+    "Head pitch/roll is also serial in training; physical linkage conversion remains in runtime; head yaw is independent.",
+    "Loading numbers alone does not implement actuator timing, command delay, torque clamps, collision settings or a learning algorithm.",
+    "Keep old successful checkpoints paired with their original control profile; no automatic policy compatibility or hardware authorization is granted."
+  ],
+  "joints": {
+    "left_hip_pitch_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": -0.15000000596046448,
+      "archived_command_min_rad": -2.6900000000000004,
+      "archived_command_max_rad": 2.6900000000000004,
+      "mechanical_position_limit_rad": [
+        -2.74,
+        2.74
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "right_hip_pitch_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.15000000596046448,
+      "archived_command_min_rad": -2.6900000000000004,
+      "archived_command_max_rad": 2.6900000000000004,
+      "mechanical_position_limit_rad": [
+        -2.74,
+        2.74
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "waist_roll_joint": {
+      "kp": 60.0,
+      "kd": 3.0,
+      "effort_nm": 97.0,
+      "velocity_rad_s": 6.2831854820251465,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.5609999999999999,
+      "archived_command_max_rad": 0.5609999999999999,
+      "mechanical_position_limit_rad": [
+        -0.611,
+        0.611
+      ],
+      "urdf_effort_metadata_nm": 30.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_hip_roll_joint": {
+      "kp": 150.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.9969999999999999,
+      "archived_command_max_rad": 1.695,
+      "mechanical_position_limit_rad": [
+        -1.047,
+        1.745
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "right_hip_roll_joint": {
+      "kp": 150.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -1.695,
+      "archived_command_max_rad": 0.9969999999999999,
+      "mechanical_position_limit_rad": [
+        -1.745,
+        1.047
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "waist_yaw_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 5.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -2.568,
+      "archived_command_max_rad": 2.568,
+      "mechanical_position_limit_rad": [
+        -2.618,
+        2.618
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_hip_yaw_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -2.6900000000000004,
+      "archived_command_max_rad": 2.6900000000000004,
+      "mechanical_position_limit_rad": [
+        -2.74,
+        2.74
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "right_hip_yaw_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -2.6900000000000004,
+      "archived_command_max_rad": 2.6900000000000004,
+      "mechanical_position_limit_rad": [
+        -2.74,
+        2.74
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "head_pitch_joint": {
+      "kp": 0.9869604110717773,
+      "kd": 0.06283185482025147,
+      "effort_nm": 0.15000000000000002,
+      "velocity_rad_s": 75.04915618896484,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.735,
+      "archived_command_max_rad": 0.47400000000000003,
+      "mechanical_position_limit_rad": [
+        -0.785,
+        0.524
+      ],
+      "urdf_effort_metadata_nm": 0.8,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_shoulder_pitch_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -3.092,
+      "archived_command_max_rad": 1.521,
+      "mechanical_position_limit_rad": [
+        -3.142,
+        1.571
+      ],
+      "urdf_effort_metadata_nm": 14.0,
+      "urdf_velocity_metadata_rad_s": 9.3
+    },
+    "right_shoulder_pitch_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -1.521,
+      "archived_command_max_rad": 3.092,
+      "mechanical_position_limit_rad": [
+        -1.571,
+        3.142
+      ],
+      "urdf_effort_metadata_nm": 14.0,
+      "urdf_velocity_metadata_rad_s": 9.3
+    },
+    "left_knee_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.30000001192092896,
+      "archived_command_min_rad": -0.12499999999999999,
+      "archived_command_max_rad": 2.3930000000000002,
+      "mechanical_position_limit_rad": [
+        -0.175,
+        2.443
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "right_knee_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": -0.30000001192092896,
+      "archived_command_min_rad": -2.3930000000000002,
+      "archived_command_max_rad": 0.12499999999999999,
+      "mechanical_position_limit_rad": [
+        -2.443,
+        0.175
+      ],
+      "urdf_effort_metadata_nm": 12.0,
+      "urdf_velocity_metadata_rad_s": 10.0
+    },
+    "head_roll_joint": {
+      "kp": 0.9869604110717773,
+      "kd": 0.06283185482025147,
+      "effort_nm": 0.15000000000000002,
+      "velocity_rad_s": 75.04915618896484,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.386,
+      "archived_command_max_rad": 0.386,
+      "mechanical_position_limit_rad": [
+        -0.436,
+        0.436
+      ],
+      "urdf_effort_metadata_nm": 0.8,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_shoulder_roll_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": 0.08281613141298294,
+      "archived_command_min_rad": -0.12499999999999999,
+      "archived_command_max_rad": 2.742,
+      "mechanical_position_limit_rad": [
+        -0.175,
+        2.792
+      ],
+      "urdf_effort_metadata_nm": 14.0,
+      "urdf_velocity_metadata_rad_s": 9.3
+    },
+    "right_shoulder_roll_joint": {
+      "kp": 130.0,
+      "kd": 5.0,
+      "effort_nm": 40.0,
+      "velocity_rad_s": 9.300000190734863,
+      "default_pos_rad": -0.07632176578044891,
+      "archived_command_min_rad": -2.742,
+      "archived_command_max_rad": 0.12499999999999999,
+      "mechanical_position_limit_rad": [
+        -2.792,
+        0.175
+      ],
+      "urdf_effort_metadata_nm": 14.0,
+      "urdf_velocity_metadata_rad_s": 9.3
+    },
+    "left_ankle_pitch_joint": {
+      "kp": 14.212230682373047,
+      "kd": 0.9047786593437195,
+      "effort_nm": 25.0,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.15000000596046448,
+      "archived_command_min_rad": -0.386,
+      "archived_command_max_rad": 0.425,
+      "mechanical_position_limit_rad": [
+        -0.436,
+        0.436
+      ],
+      "urdf_effort_metadata_nm": 6.0,
+      "urdf_velocity_metadata_rad_s": 12.56
+    },
+    "right_ankle_pitch_joint": {
+      "kp": 14.212230682373047,
+      "kd": 0.9047786593437195,
+      "effort_nm": 25.0,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.15000000596046448,
+      "archived_command_min_rad": -0.386,
+      "archived_command_max_rad": 0.425,
+      "mechanical_position_limit_rad": [
+        -0.436,
+        0.436
+      ],
+      "urdf_effort_metadata_nm": 6.0,
+      "urdf_velocity_metadata_rad_s": 12.56
+    },
+    "head_yaw_joint": {
+      "kp": 0.9869604110717773,
+      "kd": 0.06283185482025147,
+      "effort_nm": 0.15000000000000002,
+      "velocity_rad_s": 75.04915618896484,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -1.695,
+      "archived_command_max_rad": 1.695,
+      "mechanical_position_limit_rad": [
+        -1.745,
+        1.745
+      ],
+      "urdf_effort_metadata_nm": 0.8,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_shoulder_yaw_joint": {
+      "kp": 7.0,
+      "kd": 0.45,
+      "effort_nm": 12.5,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -1.695,
+      "archived_command_max_rad": 1.695,
+      "mechanical_position_limit_rad": [
+        -1.745,
+        1.745
+      ],
+      "urdf_effort_metadata_nm": 3.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "right_shoulder_yaw_joint": {
+      "kp": 7.0,
+      "kd": 0.45,
+      "effort_nm": 12.5,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -1.695,
+      "archived_command_max_rad": 1.695,
+      "mechanical_position_limit_rad": [
+        -1.745,
+        1.745
+      ],
+      "urdf_effort_metadata_nm": 3.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_ankle_roll_joint": {
+      "kp": 14.212230682373047,
+      "kd": 0.9047786593437195,
+      "effort_nm": 25.0,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.386,
+      "archived_command_max_rad": 0.386,
+      "mechanical_position_limit_rad": [
+        -0.436,
+        0.436
+      ],
+      "urdf_effort_metadata_nm": 6.0,
+      "urdf_velocity_metadata_rad_s": 12.56
+    },
+    "right_ankle_roll_joint": {
+      "kp": 14.212230682373047,
+      "kd": 0.9047786593437195,
+      "effort_nm": 25.0,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.386,
+      "archived_command_max_rad": 0.386,
+      "mechanical_position_limit_rad": [
+        -0.436,
+        0.436
+      ],
+      "urdf_effort_metadata_nm": 6.0,
+      "urdf_velocity_metadata_rad_s": 12.56
+    },
+    "left_elbow_joint": {
+      "kp": 7.0,
+      "kd": 0.45,
+      "effort_nm": 12.5,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": -0.6000000238418579,
+      "archived_command_min_rad": -2.568,
+      "archived_command_max_rad": 0.12499999999999999,
+      "mechanical_position_limit_rad": [
+        -2.618,
+        0.175
+      ],
+      "urdf_effort_metadata_nm": 3.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "right_elbow_joint": {
+      "kp": 7.0,
+      "kd": 0.45,
+      "effort_nm": 12.5,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.6000000238418579,
+      "archived_command_min_rad": -0.12499999999999999,
+      "archived_command_max_rad": 2.568,
+      "mechanical_position_limit_rad": [
+        -0.175,
+        2.618
+      ],
+      "urdf_effort_metadata_nm": 3.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_wrist_yaw_joint": {
+      "kp": 7.0,
+      "kd": 1.0,
+      "effort_nm": 1.5625,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -1.695,
+      "archived_command_max_rad": 1.695,
+      "mechanical_position_limit_rad": [
+        -1.745,
+        1.745
+      ],
+      "urdf_effort_metadata_nm": 3.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "right_wrist_yaw_joint": {
+      "kp": 7.0,
+      "kd": 1.0,
+      "effort_nm": 1.5625,
+      "velocity_rad_s": 36.20000076293945,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -1.695,
+      "archived_command_max_rad": 1.695,
+      "mechanical_position_limit_rad": [
+        -1.745,
+        1.745
+      ],
+      "urdf_effort_metadata_nm": 3.0,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_wrist_pitch_joint": {
+      "kp": 7.0,
+      "kd": 0.4,
+      "effort_nm": 0.03,
+      "velocity_rad_s": 75.04915618896484,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.735,
+      "archived_command_max_rad": 0.735,
+      "mechanical_position_limit_rad": [
+        -0.785,
+        0.785
+      ],
+      "urdf_effort_metadata_nm": 0.8,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "right_wrist_pitch_joint": {
+      "kp": 7.0,
+      "kd": 0.4,
+      "effort_nm": 0.03,
+      "velocity_rad_s": 75.04915618896484,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.735,
+      "archived_command_max_rad": 0.735,
+      "mechanical_position_limit_rad": [
+        -0.785,
+        0.785
+      ],
+      "urdf_effort_metadata_nm": 0.8,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "left_wrist_roll_joint": {
+      "kp": 7.0,
+      "kd": 0.4,
+      "effort_nm": 0.03,
+      "velocity_rad_s": 75.04915618896484,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.7,
+      "archived_command_max_rad": 0.7,
+      "mechanical_position_limit_rad": [
+        -0.75,
+        0.75
+      ],
+      "urdf_effort_metadata_nm": 0.8,
+      "urdf_velocity_metadata_rad_s": 3.8
+    },
+    "right_wrist_roll_joint": {
+      "kp": 7.0,
+      "kd": 0.4,
+      "effort_nm": 0.03,
+      "velocity_rad_s": 75.04915618896484,
+      "default_pos_rad": 0.0,
+      "archived_command_min_rad": -0.7,
+      "archived_command_max_rad": 0.7,
+      "mechanical_position_limit_rad": [
+        -0.75,
+        0.75
+      ],
+      "urdf_effort_metadata_nm": 0.8,
+      "urdf_velocity_metadata_rad_s": 3.8
+    }
+  }
+}

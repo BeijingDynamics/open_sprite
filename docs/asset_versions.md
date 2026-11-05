@@ -1,8 +1,51 @@
 # Robot asset versions and policy provenance
 
+## Default waist-inertia revision (2026-11-05)
+
+Use `models/sprite0825_v5_4340_shoulders_waist20261105/` for the updated
+waist inertial parameters. The 2026-11-04 publication only packaged the
+historical four-J4340P shoulder asset; it did not include the later waist
+payload update. This revision corrects that omission without rewriting the
+historical assets or changing any policy/runtime package.
+
+Owner-supplied `waist_yaw_link` inertial parameters:
+
+| Parameter | Updated value |
+| --- | --- |
+| Mass | 3.7391 kg |
+| COM xyz, in link frame | 0.02454, 0.000063252, 0.11823 m |
+| Inertial rpy | 0, 0, 0 |
+| Ixx / Iyy / Izz | 0.006815 / 0.004205 / 0.0040106 kg m^2 |
+| Ixy / Ixz / Iyz | 3.8252e-7 / 5.083e-5 / -1.0844e-6 kg m^2 |
+
+These are the complete new link inertial parameters, not an extra point mass
+to add to the old values. The tensor is about the supplied COM in the
+link-aligned inertial frame. The URDF, floating external-PD MJCF and
+joint-locked inspection MJCF all contain the update. MuJoCo stores principal
+moments and their orientation after loading; the validator reconstructs and
+checks the full tensor instead of comparing principal moments to Ixx/Iyy/Izz.
+
+All other link inertials, joint origins/axes/ranges, effort/velocity metadata,
+armature, collision settings and mesh bytes are unchanged from historical v5.
+In particular this does not replace the public shoulder armature or collision
+shapes with experiment-specific values. No PD gains are supplied by this asset
+revision, and no existing trained policy is automatically qualified for it.
+
+The new directory includes its own complete mesh set. Its manifest records
+the historical base, the owner-provided parameters and per-file hashes.
+`python scripts/build_waist_inertia_revision.py --check` reproducibly rebuilds
+the revision in a temporary directory and compares every packaged byte.
+`python scripts/validate_models.py` loads all six scenes and checks the latest
+waist parameters in URDF and both compiled MJCF models. Regression tests also
+check that the rest of the robot and all mesh bytes were preserved.
+
+The unchanged historical directory `models/sprite0825_v5_4340_shoulders/`
+intentionally retains a waist mass of 2.07092842025253 kg for old checkpoints.
+Use the new default path above when an updated model is required.
+
 ## v5 four-shoulder release (2026-11-04)
 
-The default asset in this repository is
+The historical v5 asset is
 `models/sprite0825_v5_4340_shoulders/`. It contains the portable URDF, all 33
 STL files from the source mesh directory, a floating-base external-PD MJCF,
 and a joint-locked geometry inspection scene. The legacy v4 directory

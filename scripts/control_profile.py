@@ -13,7 +13,8 @@ import xml.etree.ElementTree as ET
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PROFILE = Path('control_profiles/sprite0825_serial_training_20261105.json')
+DEFAULT_PROFILE = Path('control_profiles/sprite0825_run002_serial500_20261106.json')
+HISTORICAL_PROFILE = Path('control_profiles/sprite0825_serial_training_20261105.json')
 SOURCE_FIELDS = ('kp', 'kd', 'effort_nm', 'velocity_rad_s', 'default_pos_rad',
                  'archived_command_min_rad', 'archived_command_max_rad')
 
@@ -90,8 +91,10 @@ class ControlProfile:
 
 def validate_profile_data(data: dict, repository_root: Path = ROOT) -> dict[str, JointControl]:
     """Validate decoded content and its asset binding; callers normally use load_control_profile."""
-    if data.get('schema') != 'open_sprite_training_control_profile_v1':
+    schema = data.get('schema')
+    if schema not in ('open_sprite_training_control_profile_v1', 'open_sprite_training_control_profile_v2'):
         raise ValueError('Unsupported control profile schema')
+    run002 = schema == 'open_sprite_training_control_profile_v2'
     if data.get('hardware_qualified') is not False or data.get('status') != 'frozen_training_snapshot_not_hardware_qualified':
         raise ValueError('Training snapshot must not grant hardware qualification')
     expected_units = dict(kp='N*m/rad', kd='N*m*s/rad', effort_nm='N*m', velocity_rad_s='rad/s',
@@ -106,6 +109,8 @@ def validate_profile_data(data: dict, repository_root: Path = ROOT) -> dict[str,
     required = {f"{binding['asset_directory']}/{name}" for name in (
         'manifest.json', 'sprite0825_float.urdf', 'mujoco/sprite0825_v5_external_pd.xml',
         'mujoco/sprite0825_v5_visual_locked.xml')}
+    if run002:
+        required.add(f"{binding['asset_directory']}/dynamics.json")
     if set(binding['files_sha256']) != required:
         raise ValueError('Incomplete model hash binding')
     for relative, expected in binding['files_sha256'].items():
@@ -175,19 +180,33 @@ def validate_profile_data(data: dict, repository_root: Path = ROOT) -> dict[str,
                 'mit_quantization', 'runtime_watchdogs', 'parallel_linkage_conversion'):
         if controller[key] is not False:
             raise ValueError('Unexpected runtime emulation or PD/effort randomization')
-    expected_timing = dict(policy_hz=50, policy_dt_s=.02, simulation_pd_hz=200, physics_dt_s=.005, decimation=4)
+    expected_timing = dict(policy_hz=50, policy_dt_s=.02, simulation_pd_hz=500 if run002 else 200,
+                           physics_dt_s=.002 if run002 else .005, decimation=10 if run002 else 4)
     if any(timing[key] != value for key, value in expected_timing.items()):
         raise ValueError('Timing differs from frozen training snapshot')
     delay = timing['command_delay']
     expected_delay = dict(enabled=True, min_physics_ticks=0, max_physics_ticks=1,
-                          min_delay_s=0.0, max_delay_s=.005, hold_probability=.9,
-                          refresh_physics_ticks=4, refresh_period_s=.02)
+                          min_delay_s=0.0, max_delay_s=.002 if run002 else .005, hold_probability=.9,
+                          refresh_physics_ticks=10 if run002 else 4, refresh_period_s=.02)
     if any(delay[key] != value or type(delay[key]) is not type(value) for key, value in expected_delay.items()):
         raise ValueError('Command delay differs from frozen training snapshot')
     if controller['torque_time_constant_s'] != [0, 0]:
         raise ValueError('Unexpected snapshot torque time constant')
-    if binding['same_complete_model_as_source_training'] is not False:
+    if not run002 and binding['same_complete_model_as_source_training'] is not False:
         raise ValueError('Do not claim public/source training model identity')
+    if run002:
+        from build_run002_bundle import REVISION, PROFILE, SOURCE_SHA256, SEMANTIC_SHA256, MODEL_FILE, dynamics
+        if data['profile_id'] != PROFILE or binding['asset_revision'] != REVISION:
+            raise ValueError('Unexpected run002 model/profile identity')
+        if binding['same_complete_model_as_source_training'] is not True:
+            raise ValueError('Run002 training MJCF must match its archived source')
+        if binding['canonical_training_mjcf'] != MODEL_FILE or binding['source_training_model_sha256'] != SOURCE_SHA256:
+            raise ValueError('Unexpected run002 training source')
+        actual = dynamics(ET.parse(asset / MODEL_FILE).getroot())
+        if (actual != _json(asset / 'dynamics.json')
+                or actual['model_semantic_sha256'] != binding['model_semantic_sha256']
+                or actual['model_semantic_sha256'] != SEMANTIC_SHA256):
+            raise ValueError('Model dynamics differ from bound run002 source')
     return result
 
 

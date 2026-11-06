@@ -1,6 +1,20 @@
 # Robot asset versions and policy provenance
 
-## Default waist-inertia revision (2026-11-05)
+## Recommended training bundle (2026-11-06)
+
+New simulation projects should load the pair from
+[`TRAINING_BUNDLE.json`](../TRAINING_BUNDLE.json). It packages the completed
+run002 training MJCF as `sprite0825_v5_supermimic_run002_20261106`, with four
+shoulder armatures0.032kg m^2 and a paired500Hz serial-PD/50Hz policy profile.
+See [source identity, validation and migration](run002_training_bundle.md).
+The source robot XML semantics are unchanged after mesh-path relocation;
+no training or runtime is modified by packaging it.
+
+The public v5 shoulders already used0.032. The separate local experiment's
+0.0018shoulder armatures were not evidence of an outdated run002 public asset.
+Do not require run002 retraining solely because of that comparison.
+
+## Historical waist-inertia revision (2026-11-05)
 
 Use `models/sprite0825_v5_4340_shoulders_waist20261105/` for the updated
 waist inertial parameters. The 2026-11-04 publication only packaged the
@@ -43,7 +57,8 @@ check that the rest of the robot and all mesh bytes were preserved.
 
 The unchanged historical directory `models/sprite0825_v5_4340_shoulders/`
 intentionally retains a waist mass of 2.07092842025253 kg for old checkpoints.
-Use the new default path above when an updated model is required.
+Use the unified training bundle above for new training, rather than choosing
+this historical waist-only model and independent controller defaults.
 
 ## v5 four-shoulder release (2026-11-04)
 

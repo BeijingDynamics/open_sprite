@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from control_profile import DEFAULT_PROFILE, ROOT, _pairs, load_control_profile, validate_profile_data
+from control_profile import DEFAULT_PROFILE, HISTORICAL_PROFILE, ROOT, _pairs, load_control_profile, validate_profile_data
 
 
 class ControlProfileTests(unittest.TestCase):
@@ -132,7 +132,7 @@ class ControlProfileTests(unittest.TestCase):
             validate_profile_data(data)
 
     def test_timing_and_delay_rejected(self):
-        for key, value in (('decimation', 10), ('physics_dt_s', .002)):
+        for key, value in (('decimation', 4), ('physics_dt_s', .005)):
             data = self.changed()
             data['timing'][key] = value
             with self.assertRaisesRegex(ValueError, 'timing'):
@@ -161,6 +161,24 @@ class ControlProfileTests(unittest.TestCase):
             (root / 'control_profiles/SHA256SUMS').write_bytes(inventory.read_bytes())
             with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
                 load_control_profile(repository_root=root)
+
+    def test_historical_profile_is_still_exactly_loadable(self):
+        old = load_control_profile(HISTORICAL_PROFILE)
+        self.assertEqual(old.sha256, '184ec989fd24b4bc6ea5034e6fdae796b5b9ce83ef2c884dfe4fc61d8d6987dc')
+        self.assertEqual(old.data['timing']['simulation_pd_hz'], 200)
+        self.assertEqual(dict(old.joints), dict(self.profile.joints))
+
+    def test_default_is_run002_five_hundred_hz(self):
+        self.assertEqual(self.profile.data['timing']['simulation_pd_hz'], 500)
+        self.assertEqual(self.profile.data['timing']['decimation'], 10)
+        self.assertEqual(self.profile.data['timing']['command_delay']['refresh_physics_ticks'], 10)
+        self.assertTrue(self.profile.data['model_binding']['same_complete_model_as_source_training'])
+
+    def test_wrong_source_model_rejected(self):
+        data = self.changed()
+        data['model_binding']['source_training_model_sha256'] = '0' * 64
+        with self.assertRaisesRegex(ValueError, 'training source'):
+            validate_profile_data(data)
 
     def test_tracker_velocity_compatibility_name_is_not_urdf_value(self):
         name = 'left_ankle_pitch_joint'

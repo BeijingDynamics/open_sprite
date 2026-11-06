@@ -1,0 +1,231 @@
+{
+  "schema": "open_sprite_serial_model_dynamics_v1",
+  "units": {
+    "armature": "kg*m^2, joint-side reflected inertia",
+    "damping": "N*m*s/rad"
+  },
+  "source_model_sha256": "2cdfb00df9867076271d49dd699c95e2a8ec2f4c6d88be25d5c9ccc6d73fd9e1",
+  "model_semantic_sha256": "c711ca53909441deb15528a4c5413d63e002059e23d546ec8ba9b64b190658c3",
+  "joints": {
+    "left_hip_pitch_joint": {
+      "axis": "0 1 0",
+      "range": "-2.74 2.74",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_hip_roll_joint": {
+      "axis": "1 0 0",
+      "range": "-1.047 1.745",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_hip_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-2.74 2.74",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_knee_joint": {
+      "axis": "0 1 0",
+      "range": "-0.175 2.443",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_ankle_pitch_joint": {
+      "axis": "0 -1 0",
+      "range": "-0.436 0.436",
+      "armature": "0.0036",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_ankle_roll_joint": {
+      "axis": "-1 0 0",
+      "range": "-0.436 0.436",
+      "armature": "0.0036",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_hip_pitch_joint": {
+      "axis": "0 -1 0",
+      "range": "-2.74 2.74",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_hip_roll_joint": {
+      "axis": "1 0 0",
+      "range": "-1.745 1.047",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_hip_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-2.74 2.74",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_knee_joint": {
+      "axis": "0 -1 0",
+      "range": "-2.443 0.175",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_ankle_pitch_joint": {
+      "axis": "0 -1 0",
+      "range": "-0.436 0.436",
+      "armature": "0.0036",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_ankle_roll_joint": {
+      "axis": "-1 0 0",
+      "range": "-0.436 0.436",
+      "armature": "0.0036",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "waist_roll_joint": {
+      "axis": "1 0 0",
+      "range": "-0.611 0.611",
+      "armature": "0.01",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "waist_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-2.618 2.618",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_shoulder_pitch_joint": {
+      "axis": "0 1 0",
+      "range": "-3.142 1.571",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_shoulder_roll_joint": {
+      "axis": "1 0 0",
+      "range": "-0.175 2.792",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_shoulder_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-1.745 1.745",
+      "armature": "0.0018",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_elbow_joint": {
+      "axis": "0 1 0",
+      "range": "-2.618 0.175",
+      "armature": "0.0018",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_wrist_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-1.745 1.745",
+      "armature": "0.0018",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_wrist_pitch_joint": {
+      "axis": "0 -1 0",
+      "range": "-0.785 0.785",
+      "armature": "0.005",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "left_wrist_roll_joint": {
+      "axis": "-1 0 0",
+      "range": "-0.75 0.75",
+      "armature": "0.005",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_shoulder_pitch_joint": {
+      "axis": "0 -1 0",
+      "range": "-1.571 3.142",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_shoulder_roll_joint": {
+      "axis": "1 0 0",
+      "range": "-2.792 0.175",
+      "armature": "0.032",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_shoulder_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-1.745 1.745",
+      "armature": "0.0018",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_elbow_joint": {
+      "axis": "0 -1 0",
+      "range": "-0.175 2.618",
+      "armature": "0.0018",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_wrist_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-1.745 1.745",
+      "armature": "0.0018",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_wrist_pitch_joint": {
+      "axis": "0 -1 0",
+      "range": "-0.785 0.785",
+      "armature": "0.005",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "right_wrist_roll_joint": {
+      "axis": "-1 0 0",
+      "range": "-0.75 0.75",
+      "armature": "0.005",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "head_pitch_joint": {
+      "axis": "0 -1 0",
+      "range": "-0.785 0.524",
+      "armature": "0.005",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "head_roll_joint": {
+      "axis": "-1 0 0",
+      "range": "-0.436 0.436",
+      "armature": "0.005",
+      "damping": "0",
+      "frictionloss": "0"
+    },
+    "head_yaw_joint": {
+      "axis": "0 0 -1",
+      "range": "-1.745 1.745",
+      "armature": "0.005",
+      "damping": "0",
+      "frictionloss": "0"
+    }
+  },
+  "interpretation": "Nominal simulation parameters, not measured motor identification or hardware commands",
+  "contact": "Exact run002 collision primitives, masks, exclusions and local friction are in the bound MJCF",
+  "urdf_scope": "URDF is the CAD/kinematic description; it cannot encode MuJoCo armature/contact exclusions. Use the bound MJCF for run002 replay."
+}

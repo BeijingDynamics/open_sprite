@@ -1,8 +1,31 @@
-# Serial training control profile
+# Serial training control profiles
+
+## Recommended current bundle: run002,500Hz
+
+The default loader now reads
+[`sprite0825_run002_serial500_20261106.json`](../control_profiles/sprite0825_run002_serial500_20261106.json).
+Use it together with the exact MJCF in [`TRAINING_BUNDLE.json`](../TRAINING_BUNDLE.json).
+This is the verified run002 robot/control pair:500Hz serial PD,50Hz policy,
+10substeps, four shoulder armatures0.032kg m^2 and waist mass3.7391kg.
+All31named Kp/Kd, effort caps, velocity thresholds and action offsets are
+unchanged from the historical table below. The new profile binds the actual
+training MJCF, not just CAD URDF metadata.
+
+Read [run002 integration and migration](run002_training_bundle.md) before
+training. The loader examples below now select this new bundle by default.
+The200Hz snapshot described in the remainder of this document is immutable
+historical provenance, NOT the recommended timing for new runs. To load it:
+
+```python
+profile = load_control_profile('control_profiles/sprite0825_serial_training_20261105.json',
+                               repository_root=ASSET_ROOT)
+```
+
+## Historical200Hz snapshot (2026-11-05)
 
 Use [`sprite0825_serial_training_20261105.json`](../control_profiles/sprite0825_serial_training_20261105.json)
-to load the31 named joint controls used by the current serial SuperMimic
-standing experiment. This is an exact control-parameter snapshot, **not a
+to load the31 named joint controls used by the November5 serial SuperMimic
+standing experiment before its500Hz timing revision. This is a control-parameter snapshot, **not a
 successful walking policy, hardware rating table or hardware deployment
 configuration**. It does not change the active training run or runtime.
 

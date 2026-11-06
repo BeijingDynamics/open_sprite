@@ -1,0 +1,14 @@
+{
+  "schema": "open_sprite_recommended_training_bundle_v1",
+  "asset_revision": "sprite0825_v5_supermimic_run002_20261106",
+  "model": "models/sprite0825_v5_supermimic_run002_20261106/mujoco/sprite0825_v5_external_pd.xml",
+  "control_profile": "control_profiles/sprite0825_run002_serial500_20261106.json",
+  "model_sha256": "842041f0638a81a7f0c76b406b6e738adb5ec419946e8b8b918ad5eedf28e5b2",
+  "profile_sha256": "e8e64bb218b3600498ae3108a099be3306a4e8495929a56974a23765c9b7033a",
+  "dynamics": "models/sprite0825_v5_supermimic_run002_20261106/dynamics.json",
+  "policy_hz": 50,
+  "simulation_pd_hz": 500,
+  "source_checkpoint_sha256": "094b52267159d26f4d5bfb41edc5823a9becc32f706c87df05f8aa36b4016282",
+  "hardware_qualified": false,
+  "note": "Unified default for new simulation work; existing checkpoints must retain their original model/profile hashes. No weights are included."
+}

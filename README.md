@@ -4,8 +4,11 @@ Open robot-description assets and reproducible simulation entry points for the
 Sprite humanoid robot. The current public model is **Sprite0825**, a roughly
 0.95 m, 31-actuated-joint humanoid with a V-shaped pelvis.
 
-The default public asset is **v5 with four proximal shoulder DM-J4340P motors
-and the updated waist inertial parameters (2026-11-05)**. Its
+The recommended simulation bundle is **the completed SuperMimic run002 model
+and its paired 500 Hz serial-PD control profile (2026-11-06)**. Start from
+[`TRAINING_BUNDLE.json`](TRAINING_BUNDLE.json), not an independently chosen
+URDF and controller table. Its four proximal shoulder DM-J4340P joints use
+**armature 0.032 kg m^2**, not 0.0018. Its
 `waist_yaw_link` mass is **3.7391 kg**, not the historical 2.070928 kg.
 Left/right shoulder pitch and roll use J4340P; shoulder yaw is not part of
 that upgrade. This is a versioned robot-description release, not a policy bundle.
@@ -23,9 +26,11 @@ This repository contains:
 The historical v5 assets were extracted from the public G74 `model5999` candidate in
 [`open_sprite_rl`](https://github.com/BeijingDynamics/open_sprite_rl/tree/07a513188de64572e891ab21cacb6c79e083b044/candidates/sprite0825_stage2_g74_model5999_4340_shoulders).
 That provenance does **not** make this the external G74 `model3000` deployment
-package referenced by a runtime launcher. The default revision adds only the
-owner-supplied waist mass, COM and inertia; it does not relabel old policies
-as qualified for the heavier model. See
+package referenced by a runtime launcher. The historical waist-only revision
+remains unchanged. The new recommended training MJCF additionally packages
+run002's actual generated collision primitives, exclusions and inertial values;
+only mesh-path relocation and XML formatting differ from its archived source.
+This does not qualify an old policy for a new model or authorize hardware. See
 [`docs/asset_versions.md`](docs/asset_versions.md) for the exact distinction.
 
 ## Quick start: view Sprite0825 in MuJoCo
@@ -40,7 +45,7 @@ cd open_sprite
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements.txt
-python -m mujoco.viewer --mjcf=models/sprite0825_v5_4340_shoulders_waist20261105/mujoco/scene.xml
+python -m mujoco.viewer --mjcf=models/sprite0825_v5_supermimic_run002_20261106/mujoco/scene.xml
 ```
 
 ### Windows PowerShell
@@ -50,7 +55,7 @@ git clone https://github.com/BeijingDynamics/open_sprite.git
 cd open_sprite
 py -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python -m mujoco.viewer --mjcf=models/sprite0825_v5_4340_shoulders_waist20261105/mujoco/scene.xml
+.venv\Scripts\python -m mujoco.viewer --mjcf=models/sprite0825_v5_supermimic_run002_20261106/mujoco/scene.xml
 ```
 
 The default scene is intentionally joint-locked so the first viewer command
@@ -67,40 +72,45 @@ instead of `python` (MuJoCo's macOS GUI requirement).
 python scripts/validate_models.py
 ```
 
-The validator checks the latest revision, historical v5 and legacy v4 scenes,
+The validator checks the recommended training bundle, historical v5 and legacy v4 scenes,
 URDF mesh paths and asset hashes. It also checks the 31 hinges, four upgraded
 shoulders, URDF/MJCF axes and position limits, and the latest waist mass,
 COM and full inertia tensor in both the URDF and compiled MuJoCo models.
-No robot connection is needed.
+No robot connection is needed. It also checks all 31 compiled joint armatures,
+passive damping, friction and ranges against the bound dynamics table, explicit
+collision masks, the 500 Hz timestep, and the unified model/profile pointer.
 
 ## Training controls
 
 The current training Kp/Kd, torque caps, default joint positions, velocity-cost
 thresholds, action scale and timing are published separately from the URDF:
 
-- [`control_profiles/sprite0825_serial_training_20261105.json`](control_profiles/sprite0825_serial_training_20261105.json)
+- [`TRAINING_BUNDLE.json`](TRAINING_BUNDLE.json): the model/profile pair for new training
+- [`control_profiles/sprite0825_run002_serial500_20261106.json`](control_profiles/sprite0825_run002_serial500_20261106.json)
 - [`docs/training_control_profile.md`](docs/training_control_profile.md), including named-joint loading and `supermimic_run` integration
 
 ```bash
 python scripts/control_profile.py
 ```
 
-The profile binds the latest waist-inertia model by SHA256, rejects unknown or
+The default profile binds the run002 training model by SHA256, rejects unknown or
 missing joint names, and preserves the exact current training values. It is a
 **training snapshot, not hardware-qualified gains or a walking-policy release**.
-This training uses50Hz policy updates and200Hz simulation PD; the separate
+This profile uses **50 Hz policy updates, 500 Hz simulation PD, 2 ms physics,
+10 substeps**, with the original named gains/caps unchanged. The separate
 runtime's500Hz ankle controller is not changed. Loading a JSON does not
 implement timing or reconcile inherited actuator limits; follow the integration
-notes before starting a new experiment. Full-model differences between the
-public asset and the source training model are explicit in the profile.
+notes before starting a new experiment. The old200Hz profile remains available
+by its explicit filename for historical checkpoints; it is no longer the default.
 
 ## Which model should I use?
 
 | Purpose | Entry point |
 | --- | --- |
-| Inspect the latest model in MuJoCo | `models/sprite0825_v5_4340_shoulders_waist20261105/mujoco/scene.xml` |
-| Develop an external-PD controller with the latest model | `models/sprite0825_v5_4340_shoulders_waist20261105/mujoco/scene_external_pd.xml` |
-| Import the latest URDF, e.g. into Isaac Lab | `models/sprite0825_v5_4340_shoulders_waist20261105/sprite0825_float.urdf` |
+| Inspect the recommended model in MuJoCo | `models/sprite0825_v5_supermimic_run002_20261106/mujoco/scene.xml` |
+| Reproduce run002 robot dynamics | `TRAINING_BUNDLE.json` and its exact training MJCF/control profile |
+| Develop an external-PD controller | `models/sprite0825_v5_supermimic_run002_20261106/mujoco/scene_external_pd.xml` |
+| Import the latest CAD URDF, e.g. into Isaac Lab | `models/sprite0825_v5_supermimic_run002_20261106/sprite0825_float.urdf` |
 | Reproduce historical v5, waist mass 2.070928 kg | `models/sprite0825_v5_4340_shoulders/sprite0825_float.urdf` |
 | Reproduce the legacy v4 release | `models/sprite0825/sprite0825_sanitized_v4.urdf` |
 
@@ -129,11 +139,13 @@ Isaac USD caches, or motor calibration. For a policy, use its own exact
 asset revision, joint order, observation/action contract and validation record;
 matching the robot name alone is not sufficient.
 
-The waist update does not change joint axes, mechanical limits, shoulder
-armature, collision geometry, meshes or PD gains. It matches the owner-supplied
-waist inertial block, not every setting in a training experiment's model adapter.
+The CAD URDF cannot express MuJoCo armature and contact exclusions. Importing it
+alone is **not** a reproduction of run002. Use the bound MJCF for exact robot
+dynamics and the profile for gains, torque saturation, action scaling and timing.
+Training-scene domain randomization/rewards/observations remain training-code
+responsibilities. The bundle does not include the trainer or policy weights.
 Historical assets remain at their old paths and still intentionally contain
-the old waist mass. Do not use those paths when requesting the updated model.
+their original parameters. See the [migration notes](docs/run002_training_bundle.md).
 
 ## Locomotion status
 

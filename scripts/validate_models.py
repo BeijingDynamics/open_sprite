@@ -15,12 +15,16 @@ import numpy as np
 
 from build_waist_inertia_revision import REVISION_NAME, WAIST_COM, WAIST_INERTIA, WAIST_MASS_KG
 from control_profile import load_control_profile
+from build_run002_bundle import REVISION as TRAINING_REVISION
 
 
 ROOT = Path(__file__).resolve().parents[1]
 V5 = ROOT / "models/sprite0825_v5_4340_shoulders"
 LATEST_V5 = ROOT / "models" / REVISION_NAME
+TRAINING_V5 = ROOT / "models" / TRAINING_REVISION
 DEFAULT_MODELS = (
+    TRAINING_V5 / "mujoco/scene.xml",
+    TRAINING_V5 / "mujoco/scene_external_pd.xml",
     LATEST_V5 / "mujoco/scene.xml",
     LATEST_V5 / "mujoco/scene_external_pd.xml",
     V5 / "mujoco/scene.xml",
@@ -170,7 +174,7 @@ def main() -> None:
     parser.add_argument("models", nargs="*", type=Path, help="MJCF files to load")
     args = parser.parse_args()
     paths = args.models or DEFAULT_MODELS
-    expected_counts = dict(zip(DEFAULT_MODELS, (0, 37, 0, 37, 0, 37)))
+    expected_counts = dict(zip(DEFAULT_MODELS, (0, 37, 0, 37, 0, 37, 0, 37)))
     for path in paths:
         resolved = path if path.is_absolute() else ROOT / path
         validate(resolved, expected_nv=expected_counts.get(resolved))
@@ -181,11 +185,14 @@ def main() -> None:
     validate_urdf(V5 / "sprite0825_float.urdf", V5)
     validate_v5_contract(V5 / "sprite0825_float.urdf", V5 / "mujoco/sprite0825_v5_external_pd.xml")
     validate_urdf(LATEST_V5 / "sprite0825_float.urdf", LATEST_V5)
+    validate_urdf(TRAINING_V5 / "sprite0825_float.urdf", TRAINING_V5)
     validate_v5_contract(LATEST_V5 / "sprite0825_float.urdf", LATEST_V5 / "mujoco/sprite0825_v5_external_pd.xml")
     validate_waist_revision()
     validate_hashes()
     profile = load_control_profile()
     print(f"OK control profile {profile.data['profile_id']} joints={len(profile.joints)} source/model hashes verified")
+    from validate_training_bundle import validate_training_bundle
+    validate_training_bundle()
 
 
 if __name__ == "__main__":

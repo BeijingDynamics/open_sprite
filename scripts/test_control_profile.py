@@ -3,6 +3,8 @@ import copy
 import json
 from pathlib import Path
 import tempfile
+import subprocess
+import sys
 import unittest
 
 from control_profile import DEFAULT_PROFILE, HISTORICAL_PROFILE, ROOT, _pairs, load_control_profile, validate_profile_data
@@ -173,6 +175,21 @@ class ControlProfileTests(unittest.TestCase):
         self.assertEqual(self.profile.data['timing']['decimation'], 10)
         self.assertEqual(self.profile.data['timing']['command_delay']['refresh_physics_ticks'], 10)
         self.assertTrue(self.profile.data['model_binding']['same_complete_model_as_source_training'])
+
+    def test_import_by_file_without_scripts_on_pythonpath(self):
+        code = '''
+import importlib.util, sys
+spec = importlib.util.spec_from_file_location('external_controls', sys.argv[1])
+module = importlib.util.module_from_spec(spec)
+sys.modules[spec.name] = module
+spec.loader.exec_module(module)
+profile = module.load_control_profile(repository_root=module.ROOT)
+assert profile.data['timing']['simulation_pd_hz'] == 500
+'''
+        with tempfile.TemporaryDirectory() as directory:
+            result = subprocess.run([sys.executable, '-I', '-c', code, str(ROOT/'scripts/control_profile.py')],
+                                    cwd=directory, capture_output=True, text=True)
+        self.assertEqual(result.returncode, 0, result.stderr)
 
     def test_wrong_source_model_rejected(self):
         data = self.changed()

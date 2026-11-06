@@ -6,6 +6,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 import math
+import runpy
 from pathlib import Path, PurePosixPath
 from types import MappingProxyType
 from typing import Mapping, Sequence
@@ -195,7 +196,10 @@ def validate_profile_data(data: dict, repository_root: Path = ROOT) -> dict[str,
     if not run002 and binding['same_complete_model_as_source_training'] is not False:
         raise ValueError('Do not claim public/source training model identity')
     if run002:
-        from build_run002_bundle import REVISION, PROFILE, SOURCE_SHA256, SEMANTIC_SHA256, MODEL_FILE, dynamics
+        # Consumers may load this file with importlib without adding scripts to sys.path.
+        contract = runpy.run_path(str(Path(__file__).with_name('build_run002_bundle.py')))
+        REVISION, PROFILE, SOURCE_SHA256, SEMANTIC_SHA256, MODEL_FILE, dynamics = (
+            contract[key] for key in ('REVISION', 'PROFILE', 'SOURCE_SHA256', 'SEMANTIC_SHA256', 'MODEL_FILE', 'dynamics'))
         if data['profile_id'] != PROFILE or binding['asset_revision'] != REVISION:
             raise ValueError('Unexpected run002 model/profile identity')
         if binding['same_complete_model_as_source_training'] is not True:
